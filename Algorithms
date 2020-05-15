@@ -1,0 +1,25 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+n = 10 #number of terms
+x = 2 #value
+Yval = np.zeros(n+1) #bunch of blank arrays
+Xval = np.zeros(n+1)
+fracError = np.zeros(n+1)
+
+def exponential(n, x):
+    sum = 1.0
+    for i in range (n, 0, -1):
+        sum = 1+x*sum/i
+        Yval[i] = sum #these arrays are used only for plotting
+        Xval[i] = i
+        fracError[i] = np.exp(x)/sum
+    return sum
+        
+
+print("\nApproximated value of e ^",x,": ", exponential(n,x))
+print("NumPy's value of e ^",x,": ", np.exp(x))
+
+plt.plot(Xval[1:n], Yval[1:n], "o") #plot of sum after each step
+plt.hlines(np.exp(x), 1, n) #exact value of exp^x, plotted as dark black line
+plt.plot(Xval[1:n], fracError[1:n]) #fractional error plot
