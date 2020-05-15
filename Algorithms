@@ -13,6 +13,7 @@ def exponential(n, x):
         sum = 1+x*sum/i
         Yval[i] = sum #these arrays are used only for plotting
         Xval[i] = i
+        print(Xval[i],Yval[i],sum)
         fracError[i] = np.exp(x)/sum
     return sum
         
@@ -20,6 +21,8 @@ def exponential(n, x):
 print("\nApproximated value of e ^",x,": ", exponential(n,x))
 print("NumPy's value of e ^",x,": ", np.exp(x))
 
-plt.plot(Xval[1:n], Yval[1:n], "o") #plot of sum after each step
-plt.hlines(np.exp(x), 1, n) #exact value of exp^x, plotted as dark black line
-plt.plot(Xval[1:n], fracError[1:n]) #fractional error plot
+plt.plot(Xval[1:n+1], Yval[1:n+1], "o") #plot of sum after each step
+plt.hlines(np.exp(x), 1, n+1) #exact value of exp^x, plotted as dark black line
+plt.plot(Xval[1:n+1], fracError[1:n+1]) #fractional error plot
+plt.xlabel("$Number\ of\ Steps$")
+plt.ylabel("$Value\ of\ Sum$")
